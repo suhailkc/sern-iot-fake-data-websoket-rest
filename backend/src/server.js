@@ -11,7 +11,11 @@ dotenv.config();
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server, {});
+const io = new Server(server, {
+    cors: {
+        origin: process.env.FRONTEND_URL,
+    },
+});
 
 // Set up polling interval to fetch data from database and emit via socket.io
 const POLL_INTERVAL = 2000; // 2 seconds
